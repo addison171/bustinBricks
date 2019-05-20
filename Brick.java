@@ -23,6 +23,10 @@ public class Brick {
         isVisible = false;
     }
 
+    public void setVisible(){
+        isVisible = true;
+    }
+
     public boolean getVisibility() {
         return isVisible;
     }

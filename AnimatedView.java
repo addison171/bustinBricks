@@ -5,14 +5,10 @@ import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Point;
 import android.graphics.RectF;
-import android.util.Log;
-import android.view.Display;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.widget.TextView;
 
 
 public class AnimatedView extends SurfaceView implements SurfaceHolder.Callback{
@@ -26,7 +22,7 @@ public class AnimatedView extends SurfaceView implements SurfaceHolder.Callback{
     boolean touchDown = false;
     boolean touchStarted = false;
     float touchX;
-    //ArrayList<RectF> bricks = new ArrayList<>();
+    int level = 0;
 
 
     public AnimatedView(Context context) {
@@ -94,6 +90,27 @@ public class AnimatedView extends SurfaceView implements SurfaceHolder.Callback{
             projectile.draw(canvas);
             platform.draw(canvas);
             paint.setColor(Color.rgb(0,255,0));
+            if(level == 0){
+                for(int i = 0; i<numBricks; i++){
+                    if(i%2 == 0||i%3 ==0){
+                        bricks[i].setInvisible();
+                    }
+
+                }
+            }
+            if(level == 1){
+                for(int i =0; i<numBricks; i++) {
+                    if (!(i % 2 == 0)) {
+                        bricks[i].setInvisible();
+                    }
+                }
+
+            }
+            if(level == 2){
+                for(int i =0; i<numBricks; i++){
+                        bricks[i].setInvisible();
+                }
+            }
             for(int i = 0; i < numBricks; i++) {
                 if(bricks[i].getVisibility()) {
                     canvas.drawRect(bricks[i].getRect(), paint);
@@ -139,12 +156,13 @@ public class AnimatedView extends SurfaceView implements SurfaceHolder.Callback{
         for(int i = 0; i < numBricks; i++){
             if (bricks[i].getVisibility()){
                 if(RectF.intersects(bricks[i].getRect(), ballRect)) {
-                    if ((ballRect.bottom > bricks[i].getRect().top) && (ballRect.left > bricks[i].getRect().left+10) && (ballRect.right < bricks[i].getRect().right-10)) {
+                    bricks[i].setInvisible();
+                    if ((ballRect.bottom > bricks[i].getRect().top) && (ballRect.left > bricks[i].getRect().left+5) && (ballRect.right < bricks[i].getRect().right-5)) {
                         projectile.yVelocity *= -1;
                         bricks[i].setInvisible();
 
                     }
-                    else if ((ballRect.top < bricks[i].getRect().bottom)  && (ballRect.left > bricks[i].getRect().left+10) && (ballRect.right < bricks[i].getRect().right-10)) {
+                    else if ((ballRect.top < bricks[i].getRect().bottom)  && (ballRect.left > bricks[i].getRect().left+5) && (ballRect.right < bricks[i].getRect().right-5)) {
                         projectile.yVelocity *= -1;
                         bricks[i].setInvisible();
 
@@ -157,8 +175,33 @@ public class AnimatedView extends SurfaceView implements SurfaceHolder.Callback{
                 }
             }
         }
-        if(RectF.intersects(platform.getRect(), ballRect)){
-            projectile.yVelocity*=-1;
+        boolean done = false;
+        if(level == 0 && projectile.score == 6){
+            done = true;
+        }
+
+        if(level == 1 && projectile.score == 18){
+            done = true;
+        }
+
+        if(done){
+            if(level == 0){
+                projectile.x = 425;
+                projectile.y = 800;
+            }
+            level++;
+            if(level ==1) {
+                for (int i = 0; i < numBricks; i++) {
+                    if (i % 2 == 0) {
+                        bricks[i].setVisible();
+                    }
+                }
+            }
+        }
+        else {
+            if (RectF.intersects(platform.getRect(), ballRect)) {
+                projectile.yVelocity *= -1;
+            }
         }
         projectile.update();
         platform.update();
