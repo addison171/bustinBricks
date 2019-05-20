@@ -8,6 +8,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ This is our main activity. It has the title, a picture, and 3 settings: difficul
 and theme
  */
 public class MainActivity extends AppCompatActivity {
+    ImageView image;
     Spinner spin1;
     Spinner spin2;
     Spinner spin3;
@@ -26,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        image = (ImageView) findViewById((Integer)R.id.image);
+
         spin1 = setupSpinner();
         spin2 = setupSpinner1();
         spin3 = setupSpinner2();

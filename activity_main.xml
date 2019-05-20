@@ -29,6 +29,15 @@
             android:text="Instructions:\n Move the platform back and forth to hit the ball and bust all the bricks! You score will be equal to how many bricks you bust"
             android:layout_below="@id/start"
             />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/image"
+            android:layout_below="@id/instructions"
+            android:src="@raw/brick"
+            />
+
         <Spinner
             android:id="@+id/difficulty"
             android:layout_width="wrap_content"
