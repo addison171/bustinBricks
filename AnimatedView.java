@@ -13,11 +13,6 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import java.util.ArrayList;
-
-import static cisc181.m.bustinbricks.GameActivity.xScreen;
-import static cisc181.m.bustinbricks.GameActivity.yScreen;
-
 
 public class AnimatedView extends SurfaceView implements SurfaceHolder.Callback{
     private MainThread mainThread;
@@ -56,7 +51,9 @@ public class AnimatedView extends SurfaceView implements SurfaceHolder.Callback{
             }
         }
         projectile = new Projectile(425, 800);
-        platform = new Platform(xScreen, yScreen);
+        platform = new Platform(GameActivity.xScreen, GameActivity.yScreen);
+        //platform.x = GameActivity.xScreen;
+        //platform.y = GameActivity.yScreen;
         mainThread.setRunning(true);
         mainThread.start();
 
@@ -138,13 +135,13 @@ public class AnimatedView extends SurfaceView implements SurfaceHolder.Callback{
         for(int i = 0; i < numBricks; i++){
             if (bricks[i].getVisibility()){
                 if(RectF.intersects(bricks[i].getRect(), ballRect)) {
-                    if ((ballRect.bottom >= bricks[i].getRect().top) && (ballRect.left > bricks[i].getRect().left) && (ballRect.right < bricks[i].getRect().right)) {
+                    if ((ballRect.bottom > bricks[i].getRect().top) && (ballRect.left > bricks[i].getRect().left) && (ballRect.right < bricks[i].getRect().right)) {
                         projectile.yVelocity *= -1;
                         bricks[i].setInvisible();
                         Log.e("hello", "ye");
 
                     }
-                    else if ((ballRect.top <= bricks[i].getRect().bottom)  && (ballRect.left > bricks[i].getRect().left) && (ballRect.right < bricks[i].getRect().right)) {
+                    else if ((ballRect.top < bricks[i].getRect().bottom)  && (ballRect.left > bricks[i].getRect().left) && (ballRect.right < bricks[i].getRect().right)) {
                         projectile.yVelocity *= -1;
                         bricks[i].setInvisible();
                         Log.e("heye", "ye");
@@ -152,10 +149,9 @@ public class AnimatedView extends SurfaceView implements SurfaceHolder.Callback{
                     }
                     else {
                         projectile.xVelocity *= -1 ;
-                        projectile.score++;
                         bricks[i].setInvisible();
                     }
-
+                    projectile.score++;
                 }
             }
         }

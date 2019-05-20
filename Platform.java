@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.util.Log;
 import android.view.SurfaceHolder;
 
 public class Platform {
@@ -13,15 +14,15 @@ public class Platform {
     public RectF rect;
     private int length;
     private int width;
-    private int xVelocity = 3;
-    private int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
 
     public Platform(int x1, int y1) {
-        x = x1;
+        x = x1/2;
         y = y1;
         length = 110;
         width = 20;
         rect = new RectF(x, (y/2+y/3+y/20), x + length, y);
+
+
     }
 
     public RectF getRect() {
@@ -36,5 +37,7 @@ public class Platform {
 
     public void update() {
         rect = new RectF(x,(y/2+y/3+y/20), x + length, y);
+
+
     }
 }
