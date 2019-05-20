@@ -12,6 +12,7 @@ import android.view.Display;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.widget.TextView;
 
 
 public class AnimatedView extends SurfaceView implements SurfaceHolder.Callback{
@@ -80,7 +81,15 @@ public class AnimatedView extends SurfaceView implements SurfaceHolder.Callback{
     public void draw(Canvas canvas) {
         super.draw(canvas);
         if (canvas != null) {
-            canvas.drawColor(Color.WHITE);
+            if(GameActivity.backColor.equals("Light theme")){
+                canvas.drawColor(Color.WHITE);
+            }
+            if(GameActivity.backColor.equals("Dark theme")){
+                canvas.drawColor(Color.BLACK);
+            }
+            if(GameActivity.backColor.equals("Trippy theme")){
+                canvas.drawColor(Color.rgb(0, 200, 0));
+            }
             Paint paint = new Paint();
             projectile.draw(canvas);
             platform.draw(canvas);

@@ -31,7 +31,15 @@ public class Platform {
 
     public void draw(Canvas canvas) {
         Paint paint = new Paint();
-        paint.setColor(Color.rgb(0, 0, 250));
+        if(GameActivity.color.equals("Blue")) {
+            paint.setColor(Color.rgb(0, 0, 250));
+        }
+        if(GameActivity.color.equals("Red")){
+            paint.setColor(Color.rgb(255, 0, 0));
+        }
+        if(GameActivity.color.equals("Green")){
+            paint.setColor(Color.rgb(0, 255, 0));
+        }
         canvas.drawRect(rect, paint);
     }
 
