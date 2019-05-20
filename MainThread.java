@@ -5,6 +5,10 @@ import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
+/*
+This is the main thread file. It runs the program by milliseconds.
+ */
+
 public class MainThread extends Thread {
     private SurfaceHolder surfaceHolder;
     private boolean running;

@@ -1,12 +1,15 @@
 package cisc181.m.bustinbricks;
 
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.util.Log;
-import android.view.SurfaceHolder;
+
+
+/*
+This is the platform class. We use it to make a platform object which has x and y value for the
+position.
+ */
 
 public class Platform {
     public float x;

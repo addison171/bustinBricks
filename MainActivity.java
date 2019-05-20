@@ -11,7 +11,12 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
+//Addison Kuykendall Jonathan Zhang Akshat Katoch
 
+/*
+This is our main activity. It has the title, a picture, and 3 settings: difficulty, platform color,
+and theme
+ */
 public class MainActivity extends AppCompatActivity {
     Spinner spin1;
     Spinner spin2;

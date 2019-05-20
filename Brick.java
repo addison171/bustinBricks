@@ -2,6 +2,10 @@ package cisc181.m.bustinbricks;
 
 import android.graphics.RectF;
 
+/*
+This is the brick class. We use this to make brick objects that create rectangles and have functions
+to make the rectangles visible or invisible
+ */
 public class Brick {
     private RectF rect;
     private boolean isVisible;

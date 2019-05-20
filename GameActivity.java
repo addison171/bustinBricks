@@ -9,6 +9,10 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Spinner;
 
+/*
+This is the game activity, it starts everything and calls the animate view view.
+ */
+
 public class GameActivity extends AppCompatActivity {
     public static int xScreen;
     public static int yScreen;

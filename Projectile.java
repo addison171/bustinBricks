@@ -10,6 +10,11 @@ import java.util.Random;
 import static cisc181.m.bustinbricks.GameActivity.xScreen;
 import static cisc181.m.bustinbricks.GameActivity.yScreen;
 
+/*
+This is the projectile class. We use it to make a projectile object that has x and y velocities
+as well as x and y positions.
+ */
+
 public class Projectile {
     int x;
     int y;

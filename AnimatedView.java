@@ -10,6 +10,10 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+/*
+This is the view where everything happens. This view has create methods and update methods
+which allow the ball and platform to move, as well as the bricks to be broken.
+ */
 
 public class AnimatedView extends SurfaceView implements SurfaceHolder.Callback{
     private MainThread mainThread;
@@ -108,7 +112,7 @@ public class AnimatedView extends SurfaceView implements SurfaceHolder.Callback{
             }
             if(level == 2){
                 for(int i =0; i<numBricks; i++){
-                        bricks[i].setInvisible();
+                        //bricks[i].setInvisible();
                 }
             }
             for(int i = 0; i < numBricks; i++) {
@@ -180,12 +184,15 @@ public class AnimatedView extends SurfaceView implements SurfaceHolder.Callback{
             done = true;
         }
 
-        if(level == 1 && projectile.score == 18){
+        if(level == 1 && projectile.score == 15){
+            done = true;
+        }
+        if(level ==2 && projectile.score == 33){
             done = true;
         }
 
         if(done){
-            if(level == 0){
+            if(level == 0|| level==1){
                 projectile.x = 425;
                 projectile.y = 800;
             }
@@ -196,6 +203,14 @@ public class AnimatedView extends SurfaceView implements SurfaceHolder.Callback{
                         bricks[i].setVisible();
                     }
                 }
+            }
+            if(level == 2){
+                for(int i = 0; i<numBricks; i++){
+                    bricks[i].setVisible();
+                }
+            }
+            if(level ==3){
+
             }
         }
         else {
