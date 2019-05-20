@@ -53,7 +53,7 @@ public class AnimatedView extends SurfaceView implements SurfaceHolder.Callback{
         projectile = new Projectile(425, 800);
         platform = new Platform(GameActivity.xScreen, GameActivity.yScreen);
         //platform.x = GameActivity.xScreen;
-        //platform.y = GameActivity.yScreen;
+        //+platform.y = GameActivity.yScreen;
         mainThread.setRunning(true);
         mainThread.start();
 
@@ -97,7 +97,7 @@ public class AnimatedView extends SurfaceView implements SurfaceHolder.Callback{
     public boolean onTouchEvent(MotionEvent e) {
         if (e.getAction() == MotionEvent.ACTION_DOWN) {
             touchDown = true;
-            touchStarted = true;     // finger JUST went down
+            touchStarted = true;
             touchX = e.getX();
 
             platform.x = touchX;
@@ -105,28 +105,23 @@ public class AnimatedView extends SurfaceView implements SurfaceHolder.Callback{
 
         }
 
-        // finger down and dragging
 
         else if (e.getAction() == MotionEvent.ACTION_MOVE) {
-            touchStarted = false;    // finger has been down for awhile now
+            touchStarted = false;
             touchX = e.getX();
             platform.x = touchX;
         }
 
-        // finger is up after being down
 
         else if (e.getAction() == MotionEvent.ACTION_UP) {
-            touchDown = false;       // finger up
-            touchStarted = false;    // so a touch cannot have just been started
+            touchDown = false;
         }
 
-        // unrecognized motion event
 
         else {
             return false;
         }
 
-        // do NOT force a redraw -- just wait for MyThread's next draw call
 
         return true;
     }
@@ -135,16 +130,14 @@ public class AnimatedView extends SurfaceView implements SurfaceHolder.Callback{
         for(int i = 0; i < numBricks; i++){
             if (bricks[i].getVisibility()){
                 if(RectF.intersects(bricks[i].getRect(), ballRect)) {
-                    if ((ballRect.bottom > bricks[i].getRect().top) && (ballRect.left > bricks[i].getRect().left) && (ballRect.right < bricks[i].getRect().right)) {
+                    if ((ballRect.bottom > bricks[i].getRect().top) && (ballRect.left > bricks[i].getRect().left+10) && (ballRect.right < bricks[i].getRect().right-10)) {
                         projectile.yVelocity *= -1;
                         bricks[i].setInvisible();
-                        Log.e("hello", "ye");
 
                     }
-                    else if ((ballRect.top < bricks[i].getRect().bottom)  && (ballRect.left > bricks[i].getRect().left) && (ballRect.right < bricks[i].getRect().right)) {
+                    else if ((ballRect.top < bricks[i].getRect().bottom)  && (ballRect.left > bricks[i].getRect().left+10) && (ballRect.right < bricks[i].getRect().right-10)) {
                         projectile.yVelocity *= -1;
                         bricks[i].setInvisible();
-                        Log.e("heye", "ye");
 
                     }
                     else {

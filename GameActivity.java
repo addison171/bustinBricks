@@ -8,8 +8,8 @@ import android.view.Window;
 import android.view.WindowManager;
 
 public class GameActivity extends AppCompatActivity {
-    static int xScreen;
-    static int yScreen;
+    public static int xScreen;
+    public static int yScreen;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
